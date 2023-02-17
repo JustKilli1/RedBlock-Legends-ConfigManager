@@ -1,17 +1,10 @@
 package net.marscraft;
 
 import net.marscraft.shared.files.configs.ConfigManager;
-import net.marscraft.shared.files.configs.ConfigValue;
+import net.marscraft.shared.files.configs.ConfigValueRecord;
 import net.marscraft.shared.files.configs.IConfigManager;
+import net.marscraft.shared.files.configs.TestRecord;
 import net.marscraft.shared.logging.ILogger;
-import net.marscraft.shared.logging.LogLevel;
-import org.simpleyaml.configuration.ConfigurationSection;
-import org.simpleyaml.configuration.file.YamlFile;
-import org.simpleyaml.configuration.implementation.api.QuoteStyle;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
 
 import static net.marscraft.shared.logging.LogLevel.INFO;
 
@@ -21,17 +14,19 @@ public class Main {
         ILogger logger = new MainLogger("Config Logger");
         IConfigManager configManager = new ConfigManager(logger, "Configs/Test/Test.yml");
         configManager.create();
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein", "Das ist eine Test Value"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein2", "Das ist eine Test Value 2"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein3", "Das ist eine Test Value 3"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein4", "Das ist eine Test Value 4"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein4.test.pfad", "Das ist eine Test Value 4"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein4.test.pfad2", "Das ist eine Test Value 4"));
-        configManager.addDefaultConfigValue(new ConfigValue("das.ist.ein4.test.pfad3", "Das ist eine Test Value 4"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein", "Das ist eine Test Value"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein2", "Das ist eine Test Value 2"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein3", "Das ist eine Test Value 3"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein4", "Das ist eine Test Value 4"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein4.test.pfad", "Das ist eine Test Value 4"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein4.test.pfad2", "Das ist eine Test Value 4"));
+        configManager.addDefaultConfigValue(new ConfigValueRecord("das.ist.ein4.test.pfad3", "Das ist eine Test Value 4"));
         //configManager.addDefaultConfigValue(Arrays.asList(new ConfigValue("das.ist.ein.test.pfad", "Das ist eine Test Value 2"), new ConfigValue("das.ist.ein.test.pfad2", "Das ist eine Test Value 3")));
         configManager.save();
 
-        logger.log(INFO, configManager.getConfigValue("das.ist.ein3").get().getValue());
+        TestRecord record = new TestRecord("asd", 222);
+
+        logger.log(INFO, configManager.getConfigValue("das.ist.ein3").get().value());
 
         /*// Create new YAML file with relative path
         final YamlFile yamlFile = new YamlFile("examples/test.yml");

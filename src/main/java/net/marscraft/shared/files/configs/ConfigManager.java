@@ -1,8 +1,6 @@
 package net.marscraft.shared.files.configs;
 
 import net.marscraft.shared.logging.ILogger;
-import net.marscraft.shared.logging.LogLevel;
-import org.simpleyaml.configuration.MemorySection;
 import org.simpleyaml.configuration.file.YamlFile;
 
 import java.io.IOException;
@@ -73,35 +71,35 @@ public class ConfigManager implements IConfigManager {
     }
 
     @Override
-    public List<ConfigValue> getConfigValue() {
-        List<ConfigValue> configValues = new ArrayList<>();
+    public List<ConfigValueRecord> getConfigValue() {
+        List<ConfigValueRecord> configValues = new ArrayList<>();
         Map<String, Object> values = config.getValues(true);
-        values.forEach((path, value) -> configValues.add(new ConfigValue(path, (String) value)));
+        values.forEach((path, value) -> configValues.add(new ConfigValueRecord(path, (String) value)));
         return configValues;
     }
 
     @Override
-    public Optional<ConfigValue> getConfigValue(String path) {
-        return Optional.ofNullable(new ConfigValue(path, config.getString(path)));
+    public Optional<ConfigValueRecord> getConfigValue(String path) {
+        return Optional.ofNullable(new ConfigValueRecord(path, config.getString(path)));
     }
 
     @Override
-    public void setConfigValue(List<ConfigValue> values) {
-        values.forEach(value -> config.set(value.getPath(), value.getValue()));
+    public void setConfigValue(List<ConfigValueRecord> values) {
+        values.forEach(value -> config.set(value.path(), value.value()));
     }
 
     @Override
-    public void setConfigValue(ConfigValue value) {
+    public void setConfigValue(ConfigValueRecord value) {
         setConfigValue(Arrays.asList(value));
     }
 
     @Override
-    public void addDefaultConfigValue(List<ConfigValue> defaultValues) {
-        defaultValues.forEach(value -> config.addDefault(value.getPath(), value.getValue()));
+    public void addDefaultConfigValue(List<ConfigValueRecord> defaultValues) {
+        defaultValues.forEach(value -> config.addDefault(value.path(), value.value()));
     }
 
     @Override
-    public void addDefaultConfigValue(ConfigValue defaultValue) {
+    public void addDefaultConfigValue(ConfigValueRecord defaultValue) {
         addDefaultConfigValue(Arrays.asList(defaultValue));
     }
 }

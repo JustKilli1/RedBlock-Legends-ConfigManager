@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /**
  * Interface to implement a Config Manger that can create and Manage a Configuration File
- * @see ConfigValue
+ * @see ConfigValueRecord
  * */
 public interface IConfigManager {
 
@@ -39,44 +39,44 @@ public interface IConfigManager {
     /**
      * Loads all Values from the Configuration File and returns them as ConfigValue List.
      * @return All ConfigValues from the Configuration File.<p> An Empty List if the Configuration file is Empty.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    List<ConfigValue> getConfigValue();
+    List<ConfigValueRecord> getConfigValue();
 
     /**
      * Gets a ConfigValue with the given path.
      * @return An Optional that contains the ConfigValue if found. <p> An Empty Optional if the requested ConfigValue wasn't found.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    Optional<ConfigValue> getConfigValue(String path);
+    Optional<ConfigValueRecord> getConfigValue(String path);
 
     /**
      * Sets the Given Values to the Configuration File.
      * @param values ConfigValues that get set.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    void setConfigValue(List<ConfigValue> values);
+    void setConfigValue(List<ConfigValueRecord> values);
 
     /**
      * Sets the Given Value to the Configuration File.
      * @param value ConfigValue that gets set.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    void setConfigValue(ConfigValue value);
+    void setConfigValue(ConfigValueRecord value);
 
     /**
      * Adds a new Default ConfigValue to the Configuration File.
      * @param defaultValues The default ConfigValues that get set.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    void addDefaultConfigValue(List<ConfigValue> defaultValues);
+    void addDefaultConfigValue(List<ConfigValueRecord> defaultValues);
 
     /**
      * Adds a new Default ConfigValue to the Configuration File.
      * @param defaultValue The default ConfigValue that gets set.
-     * @see ConfigValue
+     * @see ConfigValueRecord
      * */
-    void addDefaultConfigValue(ConfigValue defaultValue);
+    void addDefaultConfigValue(ConfigValueRecord defaultValue);
 
 
 }

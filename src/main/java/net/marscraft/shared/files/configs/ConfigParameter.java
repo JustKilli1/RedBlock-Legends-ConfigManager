@@ -1,6 +1,5 @@
 package net.marscraft.shared.files.configs;
 
-
 public class ConfigParameter {
 
     private static final char idChar = '#';
