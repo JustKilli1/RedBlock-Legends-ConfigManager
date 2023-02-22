@@ -46,32 +46,4 @@ public class FileLogger {
         logToFile(Arrays.asList(message));
     }
 
-    /**
-     * Utils Method for Logger to get the StackTrace of an Exception as String
-     * @param ex Exception that gets turned into a String
-     * @return StackTrace from Exception as String
-     * */
-    protected String getStackTraceAsStr(Exception ex) {
-        if(ex == null) return "No Exception";
-        StringWriter strWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(strWriter);
-        ex.printStackTrace(printWriter);
-        return strWriter.toString();
-    }
-
-    /**
-     * Utils Method for Logger to Format a LogMessage
-     * @param logLevel LogLevel
-     * @param loggerName Name of the calling logger
-     * @param message Custom Message
-     * @param ex occurring Exception
-     * @return Formatted LogMessage
-     * @see LogLevel
-     * */
-    protected String formatMessage(LogLevel logLevel, String loggerName, String message, Exception ex) {
-        return "Level: " + logLevel.getName() + "\n" +
-                "Logger Name: " + loggerName + "\n" +
-                "Message: " + message + "\n" +
-                "Exception: " +  getStackTraceAsStr(ex);
-    }
 }

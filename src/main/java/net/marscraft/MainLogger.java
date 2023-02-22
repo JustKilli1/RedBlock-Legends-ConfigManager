@@ -3,6 +3,7 @@ package net.marscraft;
 import net.marscraft.shared.logging.ILogger;
 import net.marscraft.shared.logging.LogCategory;
 import net.marscraft.shared.logging.LogLevel;
+import net.marscraft.shared.logging.LoggingUtils;
 import net.marscraft.shared.logging.type.ConsoleLogger;
 import net.marscraft.shared.logging.type.FileLogger;
 
@@ -17,7 +18,7 @@ public class MainLogger extends ConsoleLogger implements ILogger {
 
     @Override
     public void log(LogLevel logLevel, String message, Exception ex) {
-        logToConsole(formatMessage(logLevel, name, message, ex));
+        logToConsole(LoggingUtils.formatMessage(logLevel, name, message, ex));
     }
 
     @Override
